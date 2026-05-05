@@ -3,6 +3,7 @@ import smtplib
 from email.message import EmailMessage
 
 from flask import Flask, jsonify, request, send_from_directory
+from google.cloud import secretmanager
 
 app = Flask(__name__, static_folder=".", static_url_path="")
 
@@ -10,6 +11,12 @@ app = Flask(__name__, static_folder=".", static_url_path="")
 def _clean(value: str, max_len: int = 1000) -> str:
     text = (value or "").strip()
     return text[:max_len]
+
+
+def _get_secret(resource_name: str) -> str:
+    client = secretmanager.SecretManagerServiceClient()
+    response = client.access_secret_version(name=resource_name)
+    return response.payload.data.decode("utf-8")
 
 
 @app.get("/")
@@ -38,9 +45,16 @@ def book_demo():
     smtp_host = os.getenv("SMTP_HOST")
     smtp_user = os.getenv("SMTP_USER")
     smtp_pass = os.getenv("SMTP_PASS")
+    smtp_pass_secret = os.getenv("SMTP_PASS_SECRET")
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
     recipient = os.getenv("DEMO_TO_EMAIL", "rohit@yantrailabs.com")
     sender = os.getenv("DEMO_FROM_EMAIL") or smtp_user
+
+    if not smtp_pass and smtp_pass_secret:
+        try:
+            smtp_pass = _get_secret(smtp_pass_secret)
+        except Exception:
+            return jsonify({"ok": False, "error": "Failed to load SMTP secret"}), 500
 
     if not smtp_host or not smtp_user or not smtp_pass or not sender:
         return jsonify({"ok": False, "error": "Email service not configured"}), 500

@@ -39,6 +39,20 @@ export DEMO_FROM_EMAIL="no-reply@yantrailabs.com"
 export DEMO_TO_EMAIL="rohit@yantrailabs.com"
 ```
 
+For production on App Engine, do not commit `SMTP_PASS` in `app.yaml`. Store the SMTP password in Secret Manager and set only:
+
+```yaml
+SMTP_PASS_SECRET: "projects/yantraivisionos/secrets/smtp-pass/versions/latest"
+```
+
+Then grant:
+
+```bash
+gcloud projects add-iam-policy-binding yantraivisionos \
+  --member="serviceAccount:yantraivisionos@appspot.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+```
+
 ## Deploy to Google App Engine
 
 ```bash

@@ -5,6 +5,14 @@ entrypoint: gunicorn -b :$PORT main:app
 automatic_scaling:
   max_instances: 2
 
+env_variables:
+  SMTP_HOST: "smtp.gmail.com"
+  SMTP_PORT: "587"
+  SMTP_USER: "rohit@yantrailabs.com"
+  SMTP_PASS_SECRET: "projects/yantraivisionos/secrets/smtp-pass/versions/latest"
+  DEMO_FROM_EMAIL: "rohit@yantrailabs.com"
+  DEMO_TO_EMAIL: "rohit@yantrailabs.com"
+
 handlers:
   - url: /(.*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html))
     static_files: \1
