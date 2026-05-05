@@ -10,16 +10,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body id="top">
   <header class="nav">
     <div class="nav-inner">
       <a href="/" class="logo" aria-label="YantrAI home">
         <span>Yantr</span><span class="grad">AI</span>
       </a>
-      <nav class="nav-links">
-        <a href="retail-agent.html">Retail</a>
-        <a href="productivity-agent.html">Productivity</a>
-        <a href="contact.html">Contact</a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteMenu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="siteMenu">
+        <a href="#top">Home</a>
+        <a href="#memory-layer">Memory Layer</a>
+        <a href="#agents">Agents</a>
+        <a href="#team">Team</a>
+        <a href="#book-demo">Book Demo</a>
       </nav>
     </div>
   </header>
@@ -215,7 +220,7 @@
                   <li>Dwell-time heatmaps and zone analytics</li>
                   <li>Anomaly alerts: theft, queues, accidents</li>
                 </ul>
-                <a href="retail-agent.html" class="link-arrow">See the full Retail Agent →</a>
+                <a href="#book-demo" class="link-arrow">Book a demo for Retail Agent →</a>
               </div>
               <div class="tab-visual">
                 <svg viewBox="0 0 480 320" class="agent-mock" xmlns="http://www.w3.org/2000/svg">
@@ -278,7 +283,7 @@
                   <li>Output trend analysis</li>
                   <li>Manager dashboard with team and individual views</li>
                 </ul>
-                <a href="productivity-agent.html" class="link-arrow">See the full Productivity Agent →</a>
+                <a href="#book-demo" class="link-arrow">Book a demo for Productivity Agent →</a>
               </div>
               <div class="tab-visual">
                 <svg viewBox="0 0 480 320" class="agent-mock" xmlns="http://www.w3.org/2000/svg">
@@ -335,7 +340,7 @@
                   <li>Founder-led design and build</li>
                   <li>First working version in 14–21 days</li>
                 </ul>
-                <a href="contact.html" class="link-arrow">Talk to a founder →</a>
+                <a href="#book-demo" class="link-arrow">Talk to a founder →</a>
               </div>
               <div class="tab-visual">
                 <svg viewBox="0 0 480 320" class="agent-mock" xmlns="http://www.w3.org/2000/svg">

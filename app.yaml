@@ -1,21 +1,16 @@
 runtime: python314
 env: standard
+entrypoint: gunicorn -b :$PORT main:app
 
 automatic_scaling:
   max_instances: 2
 
 handlers:
-  - url: /
-    static_files: index.html
-    upload: index.html
+  - url: /(.*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html))
+    static_files: \1
+    upload: .*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html)
     secure: always
 
-  - url: /(.*\.html)
-    static_files: \1
-    upload: .*\.html
-    secure: always
-
-  - url: /(.*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2))
-    static_files: \1
-    upload: .*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2)
+  - url: /.*
+    script: auto
     secure: always

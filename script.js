@@ -19,11 +19,34 @@ if ('IntersectionObserver' in window) {
   const form = document.getElementById('demoForm');
   const success = document.getElementById('formSuccess');
   if (!form || !success) return;
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    form.style.display = 'none';
-    success.style.display = 'block';
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalLabel = submitButton ? submitButton.textContent : '';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+    const data = Object.fromEntries(new FormData(form).entries());
+    try {
+      const response = await fetch('/api/book-demo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error('Request failed');
+      form.style.display = 'none';
+      success.style.display = 'block';
+      form.reset();
+    } catch (err) {
+      alert('We could not submit your request right now. Please call +91 96434 98089 or email rohit@yantrailabs.com.');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalLabel;
+      }
+    }
   });
 })();
 
@@ -46,4 +69,26 @@ if ('IntersectionObserver' in window) {
     });
   });
   window.__tabsBound = true;
+})();
+
+/* Mobile menu */
+(function initMobileMenu() {
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('siteMenu');
+  if (!toggle || !menu) return;
+
+  const closeMenu = () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-open');
+  };
+
+  toggle.addEventListener('click', () => {
+    const next = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(next));
+    menu.classList.toggle('is-open', next);
+  });
+
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
 })();
