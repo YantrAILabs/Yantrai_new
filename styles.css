@@ -878,8 +878,10 @@ em { font-style: italic; }
 .team-sub strong { color: var(--black); font-weight: 700; }
 .team-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 @media (max-width: 768px) {
   .team-cards { grid-template-columns: 1fr; gap: 16px; }
