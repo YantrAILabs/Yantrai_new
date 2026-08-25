@@ -461,7 +461,6 @@
   var ROUTES = {
     'how aifa works': '#how', 'what it found': '#proof', 'implementation': '#integration',
     'support': '#book', 'contact': '#book',
-    'about yantrai labs': '/yantrai', 'careers': '/yantrai#team',
     'security': '#integration',
     'view all agents': '#agents', 'anything with an export': '#integration',
     'invoice entry': '#agents', 'sync to erp': '#agents', 'payment processing': '#agents',
@@ -477,7 +476,11 @@
   };
 
   $$('a[data-placeholder-link]').forEach(function (a) {
-    var target = ROUTES[a.textContent.trim().toLowerCase().replace(/\s*\u2192$/, '').trim()];
+    var key = a.textContent.trim().toLowerCase()
+      .replace(/\s*\u2192$/, '')          // trailing arrow
+      .replace(/\s+agent$/, '')            // "Duplicate Agent" -> "duplicate"
+      .trim();
+    var target = ROUTES[key];
     if (target) {
       a.setAttribute('href', target);
       a.removeAttribute('data-placeholder-link');

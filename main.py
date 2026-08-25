@@ -2,10 +2,13 @@ import os
 import smtplib
 from email.message import EmailMessage
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, abort, jsonify, request, send_from_directory
 from google.cloud import secretmanager
 
-app = Flask(__name__, static_folder=".", static_url_path="")
+# static_folder is disabled on purpose: Flask's built-in static route is
+# registered ahead of ours and would serve legacy/ straight past the guard
+# below. Every file goes through static_files() instead.
+app = Flask(__name__, static_folder=None)
 
 
 def _clean(value: str, max_len: int = 1000) -> str:
@@ -60,20 +63,16 @@ def _send_mail(subject: str, body: str, reply_to: str = ""):
 
 @app.get("/")
 def home():
-    """AiFA is the default page; the YantrAI company site moved to /yantrai."""
     return send_from_directory("aifa", "index.html")
 
 
-@app.get("/yantrai")
-def yantrai_home():
-    # No trailing slash on purpose: the company page's relative refs
-    # (styles.css, script.js, assets/team/...) then still resolve against the
-    # root, where those files are untouched.
-    return send_from_directory(".", "index.html")
-
-
+# Only the AiFA site and the two root files are served. The previous company
+# site lives in legacy/ for reference; .gcloudignore keeps it out of the image
+# entirely, so nothing under it is reachable.
 @app.get("/<path:path>")
 def static_files(path: str):
+    if path.split("/", 1)[0] == "legacy":
+        abort(404)
     return send_from_directory(".", path)
 
 
