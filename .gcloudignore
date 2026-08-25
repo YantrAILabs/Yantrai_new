@@ -19,3 +19,6 @@ __pycache__/
 /setup.cfg
 # local dev virtualenv (see README)
 .venv-local/
+
+# the previous company site — kept in git, not deployed
+legacy/
