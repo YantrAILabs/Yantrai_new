@@ -91,7 +91,7 @@ body { margin: 0; background: #FFFFFF; }
     <div id="nav-links" data-nav-links="1" style="display: flex; align-items: center; gap: 26px; flex: 0 1 auto; font-size: 14px; font-weight: 500; letter-spacing: -0.28px; color: rgb(21, 20, 20);">
       <a href="#how" style="white-space: nowrap;">How it works</a>
       <a href="#problem" style="white-space: nowrap;">The problem</a>
-      <a href="#agents" style="white-space: nowrap;">The agents</a>
+      <a href="#agents" style="white-space: nowrap;">The AI team</a>
       <a href="#proof" style="white-space: nowrap;">The metrics</a>
       <a href="#integration" style="white-space: nowrap;">Integration</a>
     </div>
@@ -199,7 +199,7 @@ body { margin: 0; background: #FFFFFF; }
         <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap;">
           <div style="display: flex; flex-direction: column; gap: 16px;">
             <span style="display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(90, 90, 90);">
-              <span style="width: 7px; height: 7px; background: rgb(152, 165, 239); display: block;"></span>The agents
+              <span style="width: 7px; height: 7px; background: rgb(152, 165, 239); display: block;"></span>The AI team
             </span>
             <h2 style="margin: 0px; font-family: Newsreader, Georgia, &quot;Times New Roman&quot;, serif; font-weight: 300; font-size: 44px; line-height: 1.08; letter-spacing: -0.03em; color: rgb(21, 20, 20); text-wrap: balance;">Agents work as a team<br>around every <span style="font-style: italic;">task</span>.</h2>
           </div>
@@ -519,7 +519,15 @@ body { margin: 0; background: #FFFFFF; }
       </ul>
     </div>
 
-    <form data-book-form="1" novalidate>
+    <div data-book-teaser="1">
+      <span data-teaser-kicker="1">One export. No connector. About a minute.</span>
+      <p data-teaser-body="1">We come back within one working day with the findings — duplicates, overcharges, credits not claimed, clocks about to breach — each with the invoice attached.</p>
+      <button type="button" data-book-open="1" aria-expanded="false" aria-controls="savings-form">
+        <span data-rupee="1">&#8377;</span><span>Check your savings</span><span data-arrow="1">&#8594;</span>
+      </button>
+    </div>
+
+    <form id="savings-form" data-book-form="1" novalidate hidden>
       <div data-field="1">
         <label for="f-name">Name</label>
         <input id="f-name" name="name" type="text" autocomplete="name" required>
@@ -628,16 +636,16 @@ body { margin: 0; background: #FFFFFF; }
 
         <div style="display: flex; flex-direction: column; gap: 15px;">
           <span style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(255, 255, 255);">
-            <span style="color: rgb(249, 235, 166); font-size: 14px; line-height: 1;">+</span>The agents
+            <span style="color: rgb(249, 235, 166); font-size: 14px; line-height: 1;">+</span>The AI team
           </span>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Duplicate</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Pricing</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">3-way match</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Payments</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Discount</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">GST</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">TDS</a>
-          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">MSME</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Duplicate Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Pricing Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">3-way match Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Payments Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">Discount Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">GST Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">TDS Agent</a>
+          <a href="#" data-placeholder-link="1" data-hv="4" class="scp4" style="font-size: 15px; font-weight: 500; letter-spacing: -0.45px; color: rgb(190, 184, 174); text-decoration: none;">MSME Agent</a>
           <a href="#" data-placeholder-link="1" data-hv="5" class="scp5" style="margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; letter-spacing: -0.45px; color: rgb(255, 255, 255); text-decoration: none;">View all agents<span style="font-size: 14px; line-height: 1;">→</span></a>        </div>
         <div style="display: flex; flex-direction: column; gap: 15px;">
           <span style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(255, 255, 255);">

@@ -199,7 +199,7 @@
       var dot = $('[data-dot]', el);
       if (dot) dot.style.background = on ? sc.edge : '#DCE0DA';
       var nameEl = $('[data-ring-agent-name]', el);
-      if (nameEl) setText(nameEl, st.agents[i][0]);
+      if (nameEl) setText(nameEl, st.agents[i][0] + ' Agent');
     });
 
     policyEls.forEach(function (el, i) {
@@ -359,6 +359,30 @@
   /* ---------------------------------------------------------- form wiring */
 
   var form     = $('[data-book-form]');
+  var teaser   = $('[data-book-teaser]');
+  var openBtn  = $('[data-book-open]');
+
+  // The form stays closed until someone asks for it — on this button, or on any
+  // CTA pointing at #book (those all say some version of "check your savings",
+  // so landing there with the fields already open is what the click meant).
+  function openForm(focus) {
+    if (!form || !form.hidden) return;
+    form.hidden = false;
+    if (teaser) teaser.hidden = true;
+    if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+    if (focus) {
+      var first = document.getElementById('f-name');
+      if (first) first.focus({ preventScroll: true });
+    }
+  }
+
+  if (openBtn) openBtn.addEventListener('click', function () { openForm(true); });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#book"]');
+    if (a) openForm(false);
+  });
+
   var doneEl   = $('[data-book-done]');
   var errorEl  = $('[data-book-error]');
   var submitEl = $('[data-book-submit]');
