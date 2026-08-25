@@ -2,3 +2,6 @@
 .claude/
 *.log
 node_modules/
+.venv-local/
+__pycache__/
+*.pyc
