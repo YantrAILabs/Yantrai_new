@@ -14,9 +14,9 @@ env_variables:
   DEMO_TO_EMAIL: "rohit@yantrailabs.com"
 
 handlers:
-  - url: /(.*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html))
+  - url: /(.*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html|mp4|webm))
     static_files: \1
-    upload: .*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html)
+    upload: .*\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|pdf|woff|woff2|html|mp4|webm)
     secure: always
 
   - url: /.*
