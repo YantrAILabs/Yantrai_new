@@ -460,7 +460,7 @@
   // Everything the artboard left as href="#" that has an obvious on-page home.
   var ROUTES = {
     'how aifa works': '#how', 'what it found': '#proof', 'implementation': '#integration',
-    'support': '#book', 'contact': '#book', 'customers': '#proof',
+    'support': '#book', 'contact': '#book',
     'about yantrai labs': '/yantrai', 'careers': '/yantrai#team',
     'security': '#integration',
     'view all agents': '#agents', 'anything with an export': '#integration',
